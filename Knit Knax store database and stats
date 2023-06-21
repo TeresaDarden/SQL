@@ -1,0 +1,35 @@
+1. I created a database for the Knit Knax company.
+
+CREATE TABLE Knit_Knax (Item_No integer primary key, Item_name text, wholesale_cost integer, retail_value integer, inventory integer);
+
+INSERT INTO Knit_Knax VALUES
+    (1, "Bibs", 1.00, 5.50, 20),
+    (2, "Blankets", 3.30, 12.00, 15),
+    (3, "Bloomers", 2.75, 10.00, 30),
+    (4, "Diaper Bags", 15.75, 30, 10),
+    (5, "Purses", 20, 50, 4),
+    (6, "Buttons", .5, 2, 40),
+    (7, "Flip Flops", 1, 6, 100),
+    (8, "Burp Cloths", 1.10, 6, 25),
+    (9, "Taggies", 2.25, 15, 3),
+    (10, "T-Shirts", 6, 20, 22),
+    (11, "Scarves", 10, 25, 4),
+    (12, "Hats", 5, 10, 4),
+    (13, "Ball Caps", 9, 25, 10),
+    (14, "Messenger Bags", 15, 35, 5),
+    (15, "Key Tags", 1, 3, 22);
+    
+SELECT * FROM Knit_Knax
+ORDER BY retail_value;
+
+
+2. Display the total inventory count.
+
+SELECT sum(inventory) FROM Knit_Knax;
+
+
+3. Display all items with less than 20 in inventory ordered in descending order.
+
+SELECT * From Knit_Knax
+    WHERE inventory < 20
+    order by inventory desc;
