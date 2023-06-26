@@ -1,0 +1,69 @@
+/* Create tables about the people, spouses, and occupation */
+
+CREATE TABLE who (id INTEGER PRIMARY KEY, p_id INTEGER, name TEXT);
+
+INSERT INTO who (p_id,name) VALUES 
+    (1,"Colleen"),
+    (2,"Hooper"),
+    (3,"Roza"),
+    (4,"Jesse"),
+    (5,"Teresa"),
+    (6,"Matt"),
+    (7,"Danielle"),
+    (8,"Aaron"),
+    (9,"Sheri"),
+    (10,"Todd"),
+    (11,"Mansfield")
+    ;
+
+CREATE TABLE spouses (id INTEGER PRIMARY KEY, p_id1 INTEGER, p_id2 INTEGER);
+
+INSERT INTO spouses (p_id1, p_id2) VALUES
+    (1,2),
+    (3,4),
+    (5,6),
+    (7,8),
+    (9,10),
+    (11,null)
+        ;
+        
+CREATE TABLE occupation (id INTEGER PRIMARY KEY, p_id INTEGER, occupation TEXT);
+
+INSERT INTO occupation (p_id, occupation) VALUES
+    (1,"teacher"),
+    (2,"GM"),
+    (3,"trainer"),
+    (4,"dancer"),
+    (5,"data analyst"),
+    (6,"designer"),
+    (7,"financial manager"),
+    (8,"entrepreneur"),
+    (9,"teacher"),
+    (10,"AP"),
+    (11,"retired")
+    ;
+    
+    
+/*Query to show people with their occupations*/
+
+Select w.name, o.occupation from who w
+join occupation o
+on w.p_id = o.p_id;
+
+/*List spouses - requires a join and a self-join*/
+
+Select a.name as wife, b.name as hubby from spouses
+join who a
+    on spouses.p_id1 = a.id
+join who b
+    on spouses.p_id2 = b.id
+;
+
+/*List of all people with or without a spouse - left outer join/self-join */
+
+Select a.name as wife, b.name as hubby from spouses
+left outer join who a
+    on spouses.p_id1 = a.id
+Left outer join who b
+    on spouses.p_id2 = b.id
+;
