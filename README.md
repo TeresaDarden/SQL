@@ -4,6 +4,8 @@ Welcome to my SQL Portfolio!  This code repository contains examples of SQL code
   -creating databases
   -sort queries
   -multiple types of aggregate functions
+  -joins
+  -postgres and standard sql dialects
   
 Feel free to take a look and reach out via email if you have any questions:
 teresadarden@bellsouth.net
