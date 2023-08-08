@@ -1,0 +1,47 @@
+**How many orders were placed in January? (Dirty Data so additional filtering necessary to clean the data)
+
+Select Count(orderID) from bit_db.JanSales
+where length(orderID) = 6
+and orderID <> 'Order ID';
+
+**How many iPhones ordered in January? 
+
+Select Count(orderID) from bit_db.JanSales
+where length(orderID) = 6
+and orderID <> 'Order ID'
+and product = 'iPhone';
+
+**Select the customer account numbers for all the orders that were placed in February
+
+Select distinct acctnum from customers
+inner join FebSales on customers.order_id = FebSales.orderID
+where length(orderID) = 6
+and orderID <> 'Order ID';
+
+**Which product was the cheapest one sold in January, and what was the price?
+
+Select product, min(price) from JanSales;
+
+**What is the total revenue for each product sold in January?
+
+Select product, sum(quantity)*price as revenue from JanSales
+Group By product
+order by revenue asc;
+
+**Which products were sold in February at 548 Lincoln St, Seattle, WA, how many of each were sold, and what was the total revenue?
+
+Select product, sum(quantity) as total_sold, sum(quantity)*price as revenue from FebSales
+where location = '548 Lincoln St, Seattle, WA 98101'
+Group by product;
+
+**How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
+
+Select count(distinct customers.acctnum), avg(quantity*price) from FebSales
+left join customers
+on FebSales.orderID = customers.order_id
+where FebSales.Quantity > 2
+and length(orderID) = 6
+and orderID <> 'Order ID';
+
+
+
