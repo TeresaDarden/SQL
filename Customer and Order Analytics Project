@@ -43,5 +43,10 @@ where FebSales.Quantity > 2
 and length(orderID) = 6
 and orderID <> 'Order ID';
 
+**List all the products sold in Los Angeles in February, and include how man of each were sold.
 
+Select distinct Product, sum(Quantity)
+From FebSales
+where location like '%Los Angeles%'
+Group By Product;
 
